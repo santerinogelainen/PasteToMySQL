@@ -1,0 +1,12 @@
+.container {
+    margin-top: 20px;
+} #settings * {
+    width: auto;
+    display: inline-block;
+} #settings {
+    margin: 10px 0 10px 0;
+} #custom_separator {
+    display: none;
+} #tables {
+    display: none;
+}
