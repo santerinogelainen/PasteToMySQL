@@ -74,26 +74,24 @@ class MySQL {
     
     public function insert($table, $columns, $data) {
         $sql = "INSERT INTO `" . $this->mysqli->real_escape_string($table) . "`(";
-        $length = count($columns) - 1;
         foreach ($columns as $index => $column) {
             if ($column != "0") {
-                $sql .= "`" . $this->mysqli->real_escape_string($column) . "`";
-                if ($length != $index) {
+                if ($index != 0) {
                     $sql .= ",";
                 }
+                $sql .= "`" . $this->mysqli->real_escape_string($column) . "`";
             }
         }
         $sql .= ") VALUES (";
-        $length = count($data) - 1;
         foreach ($data as $index => $value) {
             if ($columns[$index] != "0") {
+                if ($index != 0) {
+                    $sql .= ",";
+                }
                 if (is_numeric($value)) {
                     $sql .= $this->mysqli->real_escape_string($value);
                 } else {
                     $sql .= "'" . $this->mysqli->real_escape_string($value) . "'";
-                }
-                if ($length != $index) {
-                    $sql .= ",";
                 }
             }
         }
