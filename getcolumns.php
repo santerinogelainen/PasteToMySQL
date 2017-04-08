@@ -7,7 +7,7 @@ $sql = new MySQL($config->host, $config->username, $config->password, $_POST["db
 
 $columns = $sql->getColumns($_POST["table"]);
 
-echo "<thead>";
+echo "<thead><tr><th></th>";
 foreach($columns as $columnindex => $columndata) {
     echo "<th><select><option value='0' style='color: red;'>Ignore</option>";
     foreach($columns as $optionindex => $optiondata) {
@@ -19,7 +19,7 @@ foreach($columns as $columnindex => $columndata) {
     }
     echo "</select></th>";
 }
-echo "</thead>";
+echo "</tr></thead>";
 
 
 ?>

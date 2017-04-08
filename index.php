@@ -21,14 +21,20 @@
       <div class="container">
         <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#settings">Settings</button>
         <div class="collapse" id="settings">
-          Separator:
-          <select id="separator" class="form-control">
+          Column separator:
+          <select id="column_separator" class="form-control">
             <option value="1">tab</option>
             <option value="2">comma (,)</option>
             <option value="3">semicolon (;)</option>
             <option value="4">custom:</option>
           </select>
-          <input type="text" class="form-control" id="custom_separator">
+          <input type="text" class="form-control" id="custom_column_separator">
+          Row separator:
+          <select id="row_separator" class="form-control">
+            <option value="1">enter</option>
+            <option value="2">custom:</option>
+          </select>
+          <input type="text" class="form-control" id="custom_row_separator">
         </div>
         <h2>Database:</h2>
         <select class="form-control" id="database">
@@ -51,13 +57,16 @@
         <div id="paste_data_block">
           <h2>Data:</h2>
           <textarea id="paste_data" class="form-control"></textarea>
-          <button class="btn btn-success" id='process_data'>Process data</button>
+          <button class="btn btn-success" id='process_data'>Process and append data</button>
+          <button class='btn btn-warning' id='clear_paste_data'>Clear input</button>
         </div>
         <div class='overflow_scroll'>
           <table id='data_table' class='table table-striped'>
             <thead></thead>
             <tbody></tbody>
           </table>
+          <button class='btn btn-success' id='add_to_sql'>Add to table</button>
+          <button class='btn btn-warning' id='clear_table'>Clear table</button>
         </div>
       </div>
       <script src="js/script.js"></script>

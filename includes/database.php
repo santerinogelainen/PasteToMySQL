@@ -72,6 +72,40 @@ class MySQL {
     }
     
     
+    public function insert($table, $columns, $data) {
+        $sql = "INSERT INTO `" . $this->mysqli->real_escape_string($table) . "`(";
+        $length = count($columns) - 1;
+        foreach ($columns as $index => $column) {
+            if ($column != "0") {
+                $sql .= "`" . $this->mysqli->real_escape_string($column) . "`";
+                if ($length != $index) {
+                    $sql .= ",";
+                }
+            }
+        }
+        $sql .= ") VALUES (";
+        $length = count($data) - 1;
+        foreach ($data as $index => $value) {
+            if ($columns[$index] != "0") {
+                if (is_numeric($value)) {
+                    $sql .= $this->mysqli->real_escape_string($value);
+                } else {
+                    $sql .= "'" . $this->mysqli->real_escape_string($value) . "'";
+                }
+                if ($length != $index) {
+                    $sql .= ",";
+                }
+            }
+        }
+        $sql .= ")";
+        if ($result = $this->mysqli->query($sql)) {
+            return "Success.";
+        } else {
+            die("Error inserting data. Error: " . $this->mysqli->error);
+        }
+    }
+    
+    
 }
 
 
