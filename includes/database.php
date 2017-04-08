@@ -40,7 +40,7 @@ class MySQL {
             }
             return $results;
         } else {
-            die("Error getting databases.");
+            die("Error getting databases. Error: " . $this->mysqli->error);
         }
     }
     
@@ -53,7 +53,21 @@ class MySQL {
             }
             return $results;
         } else {
-            die("Error getting tables.");
+            die("Error getting tables. Error: " . $this->mysqli->error);
+        }
+    }
+    
+    
+    public function getColumns($table) {
+        //fuck you mysqli for not accepting table name as '?'
+        if ($result = $this->mysqli->query("DESCRIBE " . $this->mysqli->real_escape_string($table))) {
+            $results = array();
+            while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+                $results[] = $row;
+            }
+            return $results;
+        } else {
+            die("Error getting columns. Error: " . $this->mysqli->error);
         }
     }
     

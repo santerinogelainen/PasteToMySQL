@@ -48,8 +48,17 @@
             <option disabled="disabled" selected="selected">Choose one</option>
           </select>
         </div>
-        <h2>Data:</h2>
-        <textarea id="paste_data" class="form-control"></textarea>
+        <div id="paste_data_block">
+          <h2>Data:</h2>
+          <textarea id="paste_data" class="form-control"></textarea>
+          <button class="btn btn-success" id='process_data'>Process data</button>
+        </div>
+        <div class='overflow_scroll'>
+          <table id='data_table' class='table table-striped'>
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+        </div>
       </div>
       <script src="js/script.js"></script>
     </body>

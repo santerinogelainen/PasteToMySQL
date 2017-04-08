@@ -1,6 +1,8 @@
 $(document).ready(function(){
     
   var separator = parseInt($("#separator").val());
+  var database = "";
+  var table = "";
   
   $("#separator").change(function(){
      separator = parseInt($("#separator").val());
@@ -13,7 +15,7 @@ $(document).ready(function(){
   
   
   $("#database").change(function(){
-    var database = $(this).val();
+    database = $(this).val();
     $.ajax({
       url: "gettables.php",
       type: "POST",
@@ -24,6 +26,27 @@ $(document).ready(function(){
         $("#tables").show();
       }
     });
+  });
+  
+  
+  $("#table").change(function(){
+    table = $(this).val();
+    $.ajax({
+      url: "getcolumns.php",
+      type: "POST",
+      data: {"db": database, "table": table},
+      success: function(data) {
+        $("#data_table thead").replaceWith(data);
+        $(".overflow_scroll, #paste_data_block").show();
+      }
+    });
+  });
+  
+  
+  $("#process_data").click(function(){
+    var pastedata = $("#paste_data").val();
+    var rows = pastedata.split(/\r|\n/);
+    console.log(rows);
   });
   
 });

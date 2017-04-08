@@ -9,4 +9,10 @@
     display: none;
 } #tables {
     display: none;
+} .overflow_scroll {
+    display: none;
+    overflow-x: scroll; 
+    width: 100%;
+} #paste_data_block {
+    display: none;
 }
