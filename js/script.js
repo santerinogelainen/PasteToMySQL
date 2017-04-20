@@ -55,7 +55,19 @@ $(document).ready(function(){
   
   $("#process_data").click(function(){
     var pastedata = $("#paste_data").val();
-    var rows = pastedata.split(/\r|\n/);
+    var separator;
+    switch (rowseparator) {
+      case 1:
+        var rows = pastedata.split(/\r|\n/);
+        break;
+      case 2:
+        separator = $("#custom_row_separator").val();
+        var rows = pastedata.split(separator);
+        break;
+      default:
+        alert("Error.");
+        return;
+    }
     var i = 0;
     while (i < rows.length) {
       switch (columnseparator) {
@@ -69,7 +81,7 @@ $(document).ready(function(){
           var columns = rows[i].split(';');
           break;
         case 4:
-          var separator = $("#custom_column_separator").val();
+          separator = $("#custom_column_separator").val();
           var columns = rows[i].split(separator);
           break;
         default:

@@ -95,6 +95,7 @@ class MySQL {
                 }
             }
         }
+        
         $sql .= ")";
         if ($result = $this->mysqli->query($sql)) {
             return "Success.";
